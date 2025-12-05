@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Products - Weaviate Semantic Search{% endblock %}
+
+{% block content %}
+<div class="products-header">
+    <a href="/" class="back-link">← Back to Search</a>
+    
+    {% if query %}
+    <h2>Search Results for: "{{ query }}"</h2>
+    <p class="results-count">{{ products|length }} product(s) found</p>
+    {% else %}
+    <h2>All Products</h2>
+    <p class="results-count">{{ products|length }} product(s)</p>
+    {% endif %}
+</div>
+
+{% if products %}
+<div class="products-grid">
+    {% for product in products %}
+    <div class="product-card">
+        <div class="product-image">
+            <img src="{{ product.image_url }}" alt="{{ product.name }}" onerror="this.src='/static/image_not_available.png'">
+        </div>
+        <div class="product-info">
+            <h3 class="product-name">{{ product.name }}</h3>
+            <p class="product-brand">{{ product.brand }}</p>
+            <p class="product-description">{{ product.description }}</p>
+            <div class="product-meta">
+                <span class="product-category">{{ product.category }}</span>
+                <span class="product-price">${{ "%.2f"|format(product.price) }}</span>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="no-results">
+    <p>No products found. Try a different search query.</p>
+    <a href="/" class="back-link">Back to Search</a>
+</div>
+{% endif %}
+{% endblock %}
+

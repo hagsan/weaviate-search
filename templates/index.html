@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Weaviate Semantic Search{% endblock %}
+
+{% block content %}
+<div class="search-container">
+    <h2>Semantic Product Search</h2>
+    <p class="subtitle">Search for products using natural language. Find what you're looking for by meaning, not just keywords.</p>
+    
+    <form action="/search" method="post" class="search-form">
+        <div class="search-input-group">
+            <input 
+                type="text" 
+                name="query" 
+                placeholder="e.g., healthy breakfast options, something sweet, protein-rich foods..."
+                class="search-input"
+                required
+                autofocus
+            >
+            <button type="submit" class="search-button">Search</button>
+        </div>
+    </form>
+    
+    <div class="search-examples">
+        <p class="examples-title">Try searching for:</p>
+        <ul class="examples-list">
+            <li>"healthy snacks"</li>
+            <li>"something for breakfast"</li>
+            <li>"foods high in protein"</li>
+            <li>"sweet treats"</li>
+            <li>"fresh vegetables"</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
