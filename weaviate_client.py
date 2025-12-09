@@ -129,9 +129,10 @@ class WeaviateClient:
             collection = self.client.collections.get(self.collection_name)
             
             # Perform semantic search using v4 API
-            response = collection.query.near_text(
+            response = collection.query.hybrid(
                 query=query,
-                limit=limit,
+                alpha=1,
+                #certainty=0.5,
                 return_metadata=["distance", "certainty"]
             )
             
